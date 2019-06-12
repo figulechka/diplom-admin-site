@@ -3,8 +3,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
@@ -45,7 +43,7 @@ class App extends React.Component<Props, State> {
 		return `v ${versionString}`;
 	}
 
-	private readonly onPublishClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+	private readonly onPublishButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		this.setState({ menuAnchorElement: event.currentTarget });
 	};
 
@@ -55,7 +53,7 @@ class App extends React.Component<Props, State> {
 		});
 	};
 
-	private readonly publish = (upgradeType: 'major'| 'minor' | 'patch') => {
+	private readonly onPublishItemClick = (upgradeType: 'major'| 'minor' | 'patch') => {
 		const { version } = this.state;
 		const newVersion: number = version +
 			((upgradeType === 'major') ? 100 : (upgradeType === 'minor') ? 10 : (upgradeType === 'patch') ? 1 : 0);
@@ -66,38 +64,44 @@ class App extends React.Component<Props, State> {
 		});
 	};
 
+	private renderPublishButton(): React.ReactElement {
+		const { menuAnchorElement } = this.state;
+
+		return (
+			<>
+				<Button
+					aria-controls="publish-menu"
+					aria-haspopup="true"
+					onClick={this.onPublishButtonClick}
+					color="inherit"
+				>
+					Опубликовать
+				</Button>
+				<Menu
+					id="publish-menu"
+					anchorEl={menuAnchorElement}
+					keepMounted
+					open={Boolean(menuAnchorElement)}
+					onClose={this.onPublishMenuClose}
+				>
+					<MenuItem onClick={() => this.onPublishItemClick('major')}>Мажорная версия</MenuItem>
+					<MenuItem onClick={() => this.onPublishItemClick('minor')}>Минорная версия</MenuItem>
+					<MenuItem onClick={() => this.onPublishItemClick('patch')}>Патч</MenuItem>
+				</Menu>
+			</>
+		);
+	}
+
 	public render(): React.ReactElement {
 		const { classes } = this.props;
-		const { menuAnchorElement } = this.state;
 
 		return (
 			<AppBar position="static">
 				<Toolbar>
-					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
-						<MenuIcon />
-					</IconButton>
 					<Typography variant="h6" className={classes.title}>
 						{this.printVersion()}
 					</Typography>
-					<Button
-						aria-controls="simple-menu"
-						aria-haspopup="true"
-						onClick={this.onPublishClick}
-						color="inherit"
-					>
-						Опубликовать
-					</Button>
-					<Menu
-						id="simple-menu"
-						anchorEl={menuAnchorElement}
-						keepMounted
-						open={Boolean(menuAnchorElement)}
-						onClose={this.onPublishMenuClose}
-					>
-						<MenuItem onClick={() => this.publish('major')}>Мажорная версия</MenuItem>
-						<MenuItem onClick={() => this.publish('minor')}>Минорная версия</MenuItem>
-						<MenuItem onClick={() => this.publish('patch')}>Патч</MenuItem>
-					</Menu>
+					{this.renderPublishButton()}
 				</Toolbar>
 			</AppBar>
 		);
