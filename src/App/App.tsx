@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './App.styles';
-import Header from '../Header';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
+import Header from '../Header';
+import Sidebar from '../Sidebar';
 
 interface Props extends WithStyles<typeof styles> {
 
@@ -16,8 +17,11 @@ class App extends React.Component<Props, State> {
 		const { classes } = this.props;
 
 		return (
-			<div className={classes.root}>
+			<div className={classes.container}>
 				<Header />
+				<div className={classes.contentContainer}>
+					<Sidebar />
+				</div>
 			</div>
 		);
 	}
