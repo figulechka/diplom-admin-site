@@ -1,24 +1,14 @@
 import React from 'react';
+import styles from './App.styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import { createStyles, Theme } from '@material-ui/core';
-
-const styles = ({ spacing }: Theme) => createStyles({
-	root: {
-		flexGrow: 1
-	},
-	menuButton: {
-		marginRight: spacing(2)
-	},
-	title: {
-		flexGrow: 1
-	}
-});
+import { withStyles, WithStyles } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
 
 interface Props extends WithStyles<typeof styles> {
 
@@ -53,7 +43,7 @@ class App extends React.Component<Props, State> {
 		});
 	};
 
-	private readonly onPublishItemClick = (upgradeType: 'major'| 'minor' | 'patch') => {
+	private readonly onPublishItemClick = (upgradeType: 'major' | 'minor' | 'patch') => {
 		const { version } = this.state;
 		const newVersion: number = version +
 			((upgradeType === 'major') ? 100 : (upgradeType === 'minor') ? 10 : (upgradeType === 'patch') ? 1 : 0);
@@ -92,12 +82,33 @@ class App extends React.Component<Props, State> {
 		);
 	}
 
+	private renderSearchInput(): React.ReactElement {
+		const { classes } = this.props;
+
+		return (
+			<div className={classes.search}>
+				<div className={classes.searchIcon}>
+					<SearchIcon />
+				</div>
+				<InputBase
+					placeholder="Поиск…"
+					classes={{
+						root: classes.inputRoot,
+						input: classes.inputInput
+					}}
+					inputProps={{ 'aria-label': 'Search' }}
+				/>
+			</div>
+		);
+	}
+
 	public render(): React.ReactElement {
 		const { classes } = this.props;
 
 		return (
 			<AppBar position="static">
 				<Toolbar>
+					{this.renderSearchInput()}
 					<Typography variant="h6" className={classes.title}>
 						{this.printVersion()}
 					</Typography>
