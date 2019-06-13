@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/figulechka/diplom-admin-site.svg?branch=master)](https://travis-ci.com/figulechka/diplom-admin-site)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
