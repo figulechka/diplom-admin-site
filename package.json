@@ -22,6 +22,11 @@
     "eject": "react-scripts eject",
     "lint": "tslint --project ./ -t codeFrame"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "eslintConfig": {
     "extends": "react-app"
   },

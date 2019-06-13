@@ -6,7 +6,7 @@ export default () => createStyles({
 		height: '100%',
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
-		alignItems: 'flex-start',
+		alignItems: 'flex-start'
 	},
 	contentContainer: {
 		height: 'calc(100% - 64px)',
