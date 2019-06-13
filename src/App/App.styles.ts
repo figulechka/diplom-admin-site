@@ -24,7 +24,7 @@ export default () => createStyles({
 	tableContainer: {
 		minHeight: '100%',
 		maxHeight: '100%',
-		width: 'calc(100% - 250px)',
+		width: 'calc(100% - 220px)',
 		overflow: 'auto'
 	}
 });
