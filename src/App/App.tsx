@@ -4,13 +4,14 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import Table from '../Table';
+import { bodyParts, symptoms } from '../Table/Table.data';
 
 interface Props extends WithStyles<typeof styles> {
 
 }
 
 interface State {
-	selectedListItemIndex: number | null;
+	selectedListItemIndex: number;
 }
 
 class App extends React.Component<Props, State> {
@@ -26,6 +27,11 @@ class App extends React.Component<Props, State> {
 		'Специальности врачей',
 		'Врачи',
 		'Мед. учреждения'
+	];
+
+	private readonly rawTableData: string[] = [
+		bodyParts,
+		symptoms
 	];
 
 	private readonly onItemClick = (itemIndex: number) => this.setState({ selectedListItemIndex: itemIndex });
@@ -46,7 +52,9 @@ class App extends React.Component<Props, State> {
 						/>
 					</div>
 					<div className={classes.tableContainer}>
-						<Table />
+						<Table
+							data={this.rawTableData[selectedListItemIndex] || ''}
+						/>
 					</div>
 				</div>
 			</div>
