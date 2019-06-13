@@ -16,6 +16,7 @@ export default (theme: Theme) => createStyles({
 		marginBottom: 15
 	},
 	input: {
-		width: '100%'
+		width: '100%',
+		marginBottom: 10
 	}
 });
