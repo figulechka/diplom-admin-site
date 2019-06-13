@@ -3,6 +3,7 @@ import styles from './App.styles';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
+import Table from '../Table';
 
 interface Props extends WithStyles<typeof styles> {
 
@@ -14,7 +15,7 @@ interface State {
 
 class App extends React.Component<Props, State> {
 	public state: State = {
-		selectedListItemIndex: null
+		selectedListItemIndex: 0
 	};
 
 	private readonly listItems: string[] = [
@@ -37,11 +38,16 @@ class App extends React.Component<Props, State> {
 			<div className={classes.container}>
 				<Header />
 				<div className={classes.contentContainer}>
-					<Sidebar
-						listItems={this.listItems}
-						selectedItemIndex={selectedListItemIndex}
-						onItemClick={this.onItemClick}
-					/>
+					<div className={classes.sidebarContainer}>
+						<Sidebar
+							listItems={this.listItems}
+							selectedItemIndex={selectedListItemIndex}
+							onItemClick={this.onItemClick}
+						/>
+					</div>
+					<div className={classes.tableContainer}>
+						<Table />
+					</div>
 				</div>
 			</div>
 		);

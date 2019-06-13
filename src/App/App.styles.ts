@@ -11,8 +11,20 @@ export default () => createStyles({
 	contentContainer: {
 		height: 'calc(100% - 64px)',
 		width: '100%',
+		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
-		alignItems: 'flex-start'
+		alignItems: 'flex-start',
+		flexWrap: 'nowrap'
+	},
+	sidebarContainer: {
+		height: '100%',
+		width: 220
+	},
+	tableContainer: {
+		minHeight: '100%',
+		maxHeight: '100%',
+		width: 'calc(100% - 250px)',
+		overflow: 'auto'
 	}
 });
