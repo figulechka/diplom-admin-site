@@ -11,5 +11,11 @@ export default (theme: Theme) => createStyles({
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(4),
 		outline: 'none'
+	},
+	title: {
+		marginBottom: 15
+	},
+	input: {
+		width: '100%'
 	}
 });
