@@ -32,7 +32,7 @@ class Sidebar extends React.Component<Props, State> {
 						>
 							<div className={classes.listItemContents}>
 								<ListItemText primary={listItem} />
-								{(index === selectedItemIndex) && (<AddIcon />)}
+								{(index === selectedItemIndex) && (<AddIcon color="primary" />)}
 							</div>
 						</ListItem>
 					))}
