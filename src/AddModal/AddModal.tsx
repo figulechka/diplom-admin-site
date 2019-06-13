@@ -8,7 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { bodyParts as bodyPartsRawData, parseData } from '../Table/Table.data';
+import { bodyParts as bodyPartsRawData, parseData, symptoms as symptomsRawData } from '../Table/Table.data';
 
 interface Props extends WithStyles<typeof styles> {
 	show: boolean;
@@ -17,11 +17,13 @@ interface Props extends WithStyles<typeof styles> {
 
 interface State {
 	selectedBodyPart: string;
+	selectedParentSymptom: string;
 }
 
 class AddModal extends React.Component<Props, State> {
 	public state: State = {
-		selectedBodyPart: ''
+		selectedBodyPart: '',
+		selectedParentSymptom: ''
 	};
 
 	private readonly onSelect = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
@@ -35,6 +37,8 @@ class AddModal extends React.Component<Props, State> {
 		const { selectedBodyPart } = this.state;
 		// @ts-ignore
 		const bodyParts = [...new Set(parseData(bodyPartsRawData).map(([, name]) => name).slice(1))];
+		// @ts-ignore
+		const parentSymptoms = [...new Set(parseData(symptomsRawData).map(([, name]) => name).slice(1))];
 
 		return (
 			<Modal
@@ -49,6 +53,7 @@ class AddModal extends React.Component<Props, State> {
 						className={classes.input}
 						label="Название"
 					/>
+
 					<FormControl className={classes.input}>
 						<InputLabel htmlFor="body-part">Часть тела</InputLabel>
 						<Select
@@ -58,6 +63,19 @@ class AddModal extends React.Component<Props, State> {
 						>
 							{bodyParts.map((bodyPart: string) => (
 								<MenuItem value={bodyPart} key={bodyPart}>{bodyPart}</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+
+					<FormControl className={classes.input}>
+						<InputLabel htmlFor="parent-symptom">Родительский симптом</InputLabel>
+						<Select
+							value={selectedBodyPart}
+							onChange={this.onSelect}
+							inputProps={{ name: 'ParentSymptom', id: 'parent-symptom' }}
+						>
+							{parentSymptoms.map((symptom: string) => (
+								<MenuItem value={symptom} key={symptom}>{symptom}</MenuItem>
 							))}
 						</Select>
 					</FormControl>
