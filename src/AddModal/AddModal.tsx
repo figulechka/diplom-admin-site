@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { bodyParts as bodyPartsRawData, parseData, symptoms as symptomsRawData } from '../Table/Table.data';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
 
 interface Props extends WithStyles<typeof styles> {
 	show: boolean;
@@ -89,6 +90,22 @@ class AddModal extends React.Component<Props, State> {
 							))}
 						</Select>
 					</FormControl>
+
+					<div className={classes.buttonContainer}>
+						<Button
+							variant="contained"
+							color="primary"
+							className={classes.button}
+							onClick={onClose}
+						>
+							Добавить
+						</Button>
+						<Button
+							onClick={onClose}
+						>
+							Отмена
+						</Button>
+					</div>
 				</div>
 			</Modal>
 		);

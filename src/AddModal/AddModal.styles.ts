@@ -22,5 +22,15 @@ export default (theme: Theme) => createStyles({
 	},
 	checkBox: {
 		marginLeft: 0
+	},
+	buttonContainer: {
+		marginTop: 20,
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		alignItems: 'center'
+	},
+	button: {
+		marginRight: 16
 	}
 });
