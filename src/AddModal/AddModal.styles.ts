@@ -10,7 +10,8 @@ export default (theme: Theme) => createStyles({
 		backgroundColor: theme.palette.background.paper,
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(4),
-		outline: 'none'
+		outline: 'none',
+		height: 'auto'
 	},
 	title: {
 		marginBottom: 15
@@ -18,5 +19,8 @@ export default (theme: Theme) => createStyles({
 	input: {
 		width: '100%',
 		marginBottom: 10
+	},
+	checkBox: {
+		marginLeft: 0
 	}
 });

@@ -9,6 +9,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { bodyParts as bodyPartsRawData, parseData, symptoms as symptomsRawData } from '../Table/Table.data';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 interface Props extends WithStyles<typeof styles> {
 	show: boolean;
@@ -34,7 +36,7 @@ class AddModal extends React.Component<Props, State> {
 
 	public render(): React.ReactElement {
 		const { show, classes, onClose } = this.props;
-		const { selectedBodyPart } = this.state;
+		const { selectedBodyPart, selectedParentSymptom } = this.state;
 		// @ts-ignore
 		const bodyParts = [...new Set(parseData(bodyPartsRawData).map(([, name]) => name).slice(1))];
 		// @ts-ignore
@@ -54,6 +56,14 @@ class AddModal extends React.Component<Props, State> {
 						label="Название"
 					/>
 
+					<FormControlLabel
+						className={classes.checkBox}
+						value="isCritical"
+						control={<Checkbox color="primary" />}
+						label="Критичный"
+						labelPlacement="start"
+					/>
+
 					<FormControl className={classes.input}>
 						<InputLabel htmlFor="body-part">Часть тела</InputLabel>
 						<Select
@@ -70,7 +80,7 @@ class AddModal extends React.Component<Props, State> {
 					<FormControl className={classes.input}>
 						<InputLabel htmlFor="parent-symptom">Родительский симптом</InputLabel>
 						<Select
-							value={selectedBodyPart}
+							value={selectedParentSymptom}
 							onChange={this.onSelect}
 							inputProps={{ name: 'ParentSymptom', id: 'parent-symptom' }}
 						>
