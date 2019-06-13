@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 
 interface Props extends WithStyles<typeof styles> {
 	show: boolean;
+	onClose: () => void;
 }
 
 interface State {
@@ -14,10 +15,13 @@ interface State {
 
 class AddModal extends React.Component<Props, State> {
 	public render(): React.ReactElement {
-		const { show, classes } = this.props;
+		const { show, classes, onClose } = this.props;
 
 		return (
-			<Modal open={show}>
+			<Modal
+				open={show}
+				onClose={onClose}
+			>
 				<div  className={classes.contentContainer}>
 					<Typography variant="subtitle1" id="simple-modal-description">
 						My Description

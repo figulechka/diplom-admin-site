@@ -13,11 +13,13 @@ interface Props extends WithStyles<typeof styles> {
 
 interface State {
 	selectedListItemIndex: number;
+	showPopup: boolean;
 }
 
 class App extends React.Component<Props, State> {
 	public state: State = {
-		selectedListItemIndex: 0
+		selectedListItemIndex: 0,
+		showPopup: false
 	};
 
 	private readonly listItems: string[] = [
@@ -36,10 +38,12 @@ class App extends React.Component<Props, State> {
 	];
 
 	private readonly onItemClick = (itemIndex: number) => this.setState({ selectedListItemIndex: itemIndex });
+	private readonly onAddClick = () => this.setState({ showPopup: true });
+	private readonly onPopupClose = () => this.setState({ showPopup: false });
 
 	public render(): React.ReactElement {
 		const { classes } = this.props;
-		const { selectedListItemIndex } = this.state;
+		const { selectedListItemIndex, showPopup } = this.state;
 
 		return (
 			<div className={classes.container}>
@@ -50,6 +54,7 @@ class App extends React.Component<Props, State> {
 							listItems={this.listItems}
 							selectedItemIndex={selectedListItemIndex}
 							onItemClick={this.onItemClick}
+							onAddClick={this.onAddClick}
 						/>
 					</div>
 					<div className={classes.tableContainer}>
@@ -58,7 +63,10 @@ class App extends React.Component<Props, State> {
 						/>
 					</div>
 				</div>
-				<AddModal show={true} />
+				<AddModal
+					show={showPopup}
+					onClose={this.onPopupClose}
+				/>
 			</div>
 		);
 	}

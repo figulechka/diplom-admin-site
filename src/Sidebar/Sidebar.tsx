@@ -10,6 +10,7 @@ interface Props extends WithStyles<typeof styles> {
 	listItems: string[];
 	selectedItemIndex: number | null;
 	onItemClick: (index: number) => void;
+	onAddClick: () => void;
 }
 
 interface State {
@@ -18,7 +19,7 @@ interface State {
 
 class Sidebar extends React.Component<Props, State> {
 	public render(): React.ReactElement {
-		const { classes, selectedItemIndex, listItems, onItemClick } = this.props;
+		const { classes, selectedItemIndex, listItems, onItemClick, onAddClick } = this.props;
 
 		return (
 			<div className={classes.container}>
@@ -32,7 +33,12 @@ class Sidebar extends React.Component<Props, State> {
 						>
 							<div className={classes.listItemContents}>
 								<ListItemText primary={listItem} />
-								{(index === selectedItemIndex) && (<AddIcon color="primary" />)}
+								{(index === selectedItemIndex) && (
+									<AddIcon
+										color="primary"
+										onClick={onAddClick}
+									/>
+								)}
 							</div>
 						</ListItem>
 					))}
