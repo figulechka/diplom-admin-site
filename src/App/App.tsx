@@ -39,6 +39,7 @@ class App extends React.Component<Props, State> {
 
 	private readonly onItemClick = (itemIndex: number) => this.setState({ selectedListItemIndex: itemIndex });
 	private readonly onAddClick = () => this.setState({ showPopup: true });
+	private readonly onEditClick = this.onAddClick;
 	private readonly onPopupClose = () => this.setState({ showPopup: false });
 
 	public render(): React.ReactElement {
@@ -60,6 +61,7 @@ class App extends React.Component<Props, State> {
 					<div className={classes.tableContainer}>
 						<Table
 							data={this.rawTableData[selectedListItemIndex] || ''}
+							onEditClick={this.onEditClick}
 						/>
 					</div>
 				</div>
