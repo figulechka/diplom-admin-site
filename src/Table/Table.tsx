@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 interface Props extends WithStyles<typeof styles> {
 	data: string;
 	onEditClick: () => void;
+	onDeleteClick: () => void;
 }
 
 interface State {
@@ -23,7 +24,7 @@ interface State {
 
 class Table extends React.Component<Props, State> {
 	public render(): React.ReactElement {
-		const { data, onEditClick } = this.props;
+		const { data, onEditClick, onDeleteClick } = this.props;
 		const [headerData, ...tableData]: string[][] = parseData(data);
 
 		return (
@@ -43,6 +44,7 @@ class Table extends React.Component<Props, State> {
 						<TableRow key={rowIndex}>
 							{rowData.map((cellData: string, cellIndex: number) => (
 								<TableCell
+									style={{ cursor: 'default' }}
 									key={`${rowIndex}_${cellIndex}`}
 									align="right"
 									size="small"
@@ -60,7 +62,10 @@ class Table extends React.Component<Props, State> {
 									color="primary"
 									onClick={onEditClick}
 								/>
-								<DeleteIcon color="error" />
+								<DeleteIcon
+									color="error"
+									onClick={onDeleteClick}
+								/>
 							</TableCell>
 						</TableRow>
 					))}
