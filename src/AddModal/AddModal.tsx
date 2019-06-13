@@ -38,7 +38,7 @@ class AddModal extends React.Component<Props, State> {
 		// @ts-ignore
 		const bodyParts = [...new Set(parseData(bodyPartsRawData).map(([, name]) => name).slice(1))];
 		// @ts-ignore
-		const parentSymptoms = [...new Set(parseData(symptomsRawData).map(([, name]) => name).slice(1))];
+		const parentSymptoms = [...new Set(parseData(symptomsRawData).map(([, name]) => name).slice(1))].sort();
 
 		return (
 			<Modal
