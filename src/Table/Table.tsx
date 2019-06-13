@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import { parseData } from './Table.data';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 
 interface Props extends WithStyles<typeof styles> {
 	data: string;
@@ -44,7 +46,11 @@ class Table extends React.Component<Props, State> {
 									align="right"
 									size="small"
 								>
-									{(cellData.length > 20) ? `${cellData.slice(0, 20)}...` : cellData}
+									<Tooltip title={cellData} placement="bottom-end">
+										<Typography>
+											{(cellData.length > 20) ? `${cellData.slice(0, 20)}...` : cellData}
+										</Typography>
+									</Tooltip>
 								</TableCell>
 							))}
 							<TableCell align="right">
