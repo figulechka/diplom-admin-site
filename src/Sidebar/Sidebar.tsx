@@ -4,6 +4,7 @@ import { withStyles, WithStyles } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
+import AddIcon from '@material-ui/icons/Add';
 
 interface Props extends WithStyles<typeof styles> {
 	listItems: string[];
@@ -29,7 +30,10 @@ class Sidebar extends React.Component<Props, State> {
 							key={listItem}
 							onClick={() => onItemClick(index)}
 						>
-							<ListItemText primary={listItem} />
+							<div className={classes.listItemContents}>
+								<ListItemText primary={listItem} />
+								{(index === selectedItemIndex) && (<AddIcon />)}
+							</div>
 						</ListItem>
 					))}
 				</List>

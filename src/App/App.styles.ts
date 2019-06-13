@@ -19,12 +19,12 @@ export default () => createStyles({
 	},
 	sidebarContainer: {
 		height: '100%',
-		width: 220
+		width: 240
 	},
 	tableContainer: {
 		minHeight: '100%',
 		maxHeight: '100%',
-		width: 'calc(100% - 220px)',
+		width: 'calc(100% - 240px)',
 		overflow: 'auto'
 	}
 });
