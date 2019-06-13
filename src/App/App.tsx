@@ -4,6 +4,7 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import Table from '../Table';
+import AddModal from '../AddModal';
 import { bodyParts, symptoms } from '../Table/Table.data';
 
 interface Props extends WithStyles<typeof styles> {
@@ -57,6 +58,7 @@ class App extends React.Component<Props, State> {
 						/>
 					</div>
 				</div>
+				<AddModal show={true} />
 			</div>
 		);
 	}
